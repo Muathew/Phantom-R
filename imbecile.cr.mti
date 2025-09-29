@@ -1,0 +1,61 @@
+D:/projects/RISC-V/CodeName_Imbecile/encoder.sv {1 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/encoder.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+
+} {} {}} D:/projects/RISC-V/CodeName_Imbecile/rvconstants.svh {1 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/rvconstants.svh
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+
+Top level modules:
+	--none--
+
+} {} {}} D:/projects/RISC-V/CodeName_Imbecile/register.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/register.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module register
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/register.sv(26): near "always_ff": syntax error, unexpected "SystemVerilog keyword 'always_ff'", expecting ';'.
+
+} {4.0 5.0} {}} D:/projects/RISC-V/CodeName_Imbecile/reg_file.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/reg_file.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module reg_file
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/reg_file.sv(22): near ";": syntax error, unexpected ';', expecting ')'.
+
+} {4.0 5.0} {}} D:/projects/RISC-V/CodeName_Imbecile/instr_mem.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/instr_mem.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module instr_mem
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/instr_mem.sv(21): near ";": syntax error, unexpected ';', expecting ')'.
+
+} {4.0 5.0} {}} D:/projects/RISC-V/CodeName_Imbecile/decoder.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/decoder.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module decoder
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/decoder.sv(21): near ";": syntax error, unexpected ';', expecting ')'.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/decoder.sv(30): Filename to `include must be enclosed in "'s.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/decoder.sv(42): (vlog-2163) Macro `I_type0 is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/decoder.sv(43): (vlog-2163) Macro `R_type is undefined.
+
+} {4.0 8.0} {}} D:/projects/RISC-V/CodeName_Imbecile/alu.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/alu.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module alu
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/alu.sv(21): near ";": syntax error, unexpected ';', expecting ')'.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(27): Filename to `include must be enclosed in "'s.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(32): (vlog-2163) Macro `ALU_ADD is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(35): (vlog-2163) Macro `ALU_SUB is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(38): (vlog-2163) Macro `ALU_XOR is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(41): (vlog-2163) Macro `ALU_AND is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(44): (vlog-2163) Macro `ALU_OR is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(47): (vlog-2163) Macro `ALU_SLL is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(50): (vlog-2163) Macro `ALU_SRL is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(53): (vlog-2163) Macro `ALU_MUL is undefined.
+** Error: D:/projects/RISC-V/CodeName_Imbecile/alu.sv(56): (vlog-2163) Macro `ALU_DIV is undefined.
+
+} {4.0 15.0} {}} D:/projects/RISC-V/CodeName_Imbecile/alu_ctrl.sv {0 {vlog -work work -sv -stats=none {D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+** Error: D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv(38): 'alu_op' already exists; must not be redefined as a named block
+** Error: (vlog-13069) D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv(38): near "=": syntax error, unexpected '='.
+** Error: (vlog-13069) ** while parsing macro expansion: 'I_TYPE0' starting at D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv(146)
+** at D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv(146): near "7": syntax error, unexpected INTEGER NUMBER.
+** Error: (vlog-13069) D:\projects\RISC-V\CodeName_Imbecile\alu_ctrl.sv(184): near ":": syntax error, unexpected ':', expecting IDENTIFIER or disable or clock or "SystemVerilog keyword 'clocking'".
+
+} {3.0 6.0 7.0 8.0} {}} D:/projects/RISC-V/CodeName_Imbecile/pc.sv {0 {vlog -work work -sv -stats=none D:/projects/RISC-V/CodeName_Imbecile/pc.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pc
+** Error: (vlog-13069) D:/projects/RISC-V/CodeName_Imbecile/pc.sv(23): near "input": syntax error, unexpected input, expecting ')'.
+
+} {4.0 5.0} {}}
