@@ -5,8 +5,8 @@
 //            :
 // Description: alu control for 32-bit RISC-V processor
 //            :
-// Limitations: this unit only handles R-TYPE and I-OPIMM instructions.
-//			  : Other instructions have their dedicated units.
+// Limitations: 
+//			  : 
 //            :
 // System     : SystemVerilog IEEE 1800-2005
 //            :
