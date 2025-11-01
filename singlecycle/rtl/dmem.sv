@@ -33,7 +33,6 @@ module dmem #(parameter XLEN = 32, FUNCT3_W = 3, DMEM_W = 1024)(
 
 //Memory array
 logic [XLEN-1:0] mem [0:DMEM_W-1];
-
 logic [XLEN-1:0] rdata;
 
 //combinational memory read
@@ -43,31 +42,33 @@ begin
 //The "a + b*addr[] " is used to appropriately address the memory as per RISC-V specifications,
 //where memory uses byte-addressing (every 8 bits = 1 byte) 
 
-
+//Memory read
 if (mem_read) begin
-    if (funct7 == `I_LOAD) begin
+    rdata = `ZERO;
         unique case (funct3)
-        `LB_F3:  rdata = {{24{mem[addr[31:2]][7+8*addr[1:0]]}}, mem[addr[31:2]][7+8*addr[1:0]]};
-        `LH_F3:  rdata = {{16{mem[addr[31:2]][15+16*addr[1]]}}, mem[addr[31:2]][15+16*addr[1]]};
+        `LB_F3:  rdata = {{24{mem[addr[31:2]][8*addr[1:0]+7]}},
+                         mem[addr[31:2]][8*addr[1:0]+7 : 8*addr[1:0]]};
+        `LH_F3:  rdata = {{16{mem[addr[31:2]][16*addr[1]+15]}}, 
+                        mem[addr[31:2]][16*addr[1]+15 : 16*addr[1]]};
         `LW_F3:  rdata = mem[addr[31:2]];
-        `LBU_F3: rdata = {24'b0, mem[addr[31:2]][7+8*addr[1:0]]};
-        `LHU_F3: rdata = {16'b0, mem[addr[31:2]][15+16*addr[1]]};
+        `LBU_F3: rdata = {24'b0, mem[addr[31:2]][8*addr[1:0]+7 : 8*addr[1:0]]};
+        `LHU_F3: rdata = {16'b0, mem[addr[31:2]][16*addr[1]+15 : 16*addr[1]]};
         default: rdata = `ZERO; 
         endcase
-        end
     end
 end
 
+assign read_data = rdata;
+
+//Sequential write
 always_ff @(posedge clk)
-    /*if (!n_reset) begin
-        I'm not too sure if this is required, I will modify this later.
-    end*/ 
+begin
     if (mem_write) begin
         unique case (funct3)
-        `SB_F3: mem[addr[31:2]][7+8*addr[1:0]] <= write_data[7:0];
-        `SH_F3: mem[addr[31:2]][15+16*addr[1]] <= write_data[15:0];
+        `SB_F3: mem[addr[31:2]][8*addr[1:0]+7 : 8*addr[1:0]] <= write_data[7:0];
+        `SH_F3: mem[addr[31:2]][16*addr[1]+15 : 16*addr[1]] <= write_data[15:0];
         `SW_F3: mem[addr[31:2]] <= write_data;
         endcase
     end
-    
+end
 endmodule
