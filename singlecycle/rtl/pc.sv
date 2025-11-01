@@ -18,12 +18,12 @@
 // Revision   : Version 1.0 17/06/25
 ////////////////////////////////////////////////////////////////////
 
-module pc #(parameter WORD_W = 32)(
+module pc #(parameter XLEN = 32)(
     input logic clk, n_reset, load_PC
-    input logic [WORD_W-1:0] PC_in
-    output logic [WORD_W-1:0] Iaddress
+    input logic [XLEN-1:0] PC_in
+    output logic [XLEN-1:0] Iaddress
 );
-s
+
 always_ff @(posedge clk, negedge n_reset)
     begin
     if (!n_reset)

@@ -5,7 +5,7 @@
 //            :
 // Description: Constants for RISC-V RV32IM ISA and ALU operations.
 //            :
-// Limitations: None
+// Limitations: 
 //            :
 // System     : SystemVerilog IEEE 1800-2005
 //            :
@@ -35,8 +35,6 @@
 `define U_LUI     7'h37 // LUI
 `define U_AUIPC   7'h17 // AUIPC
 `define J_JAL     7'h6F // JAL
-//could be extended in the future to fit the rest?
-//	Room for additional operations
 
 //funct3 field
 //R-TYPE, the instructions are grouped together to avoid space wastage
@@ -80,7 +78,7 @@
 
 //I-TYPE environment
 `define ECALL_F3  3'h0
-`define EBREAK_F3 3'h0 //requires fine tuning to accomodate risc-v specifications in funct7 fields
+`define EBREAK_F3 3'h0 
 
 //S-TYPE
 `define SB_F3 3'h0
@@ -98,9 +96,9 @@
 //J-TYPE
 `define JAL_F3 3'h0
 
-//U-TYPE COMEBACK HERE
-`define LUI_OP //COME
-`define AUIPC_OP //BACK
+//U-TYPE needs to be sorted
+`define LUI_OP //
+`define AUIPC_OP //
 
 //funct7 for R-TYPE instr
 `define ADD_F7     7'h00

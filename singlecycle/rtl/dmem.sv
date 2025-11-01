@@ -27,7 +27,7 @@ module dmem #(parameter XLEN = 32, FUNCT3_W = 3, DMEM_W = 1024)(
     input logic [XLEN-1:0] addr,
     input logic [XLEN-1:0] write_data,
     output logic [XLEN-1:0] read_data
-)
+);
 
 `include "rvconstants.svh"
 
@@ -59,17 +59,15 @@ if (mem_read) begin
 end
 
 always_ff @(posedge clk)
-    if (!n_reset) begin
-
-    end
-    else if (mem_write) begin
-        if (funct7 == `S_TYPE) begin
-            unique case (funct3)
-            `SB_F3: mem[addr[31:2]][7+8*addr[1:0]] <= write_data[7:0];
-            `SH_F3: mem[addr[31:2]][15+16*addr[1]] <= write_data[15:0];
-            `SW_F3: mem[addr[31:2]] <= write_data;
-            endcase
-        end
+    /*if (!n_reset) begin
+        I'm not too sure if this is required, I will modify this later.
+    end*/ 
+    if (mem_write) begin
+        unique case (funct3)
+        `SB_F3: mem[addr[31:2]][7+8*addr[1:0]] <= write_data[7:0];
+        `SH_F3: mem[addr[31:2]][15+16*addr[1]] <= write_data[15:0];
+        `SW_F3: mem[addr[31:2]] <= write_data;
+        endcase
     end
     
 endmodule
