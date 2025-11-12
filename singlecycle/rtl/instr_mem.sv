@@ -16,27 +16,30 @@
 //            : mw14n23@soton.ac.uk
 //
 // Revision   : Version 1.0 17/06/25
+//              Version 2.0 12/11/25 restructure to match with pc_unit
 ////////////////////////////////////////////////////////////////////
 
-module instr_mem #(parameter XLEN = 32, MEM_SIZE = 256;)( 
+module instr_mem #(
+    parameter XLEN = 32,
+    parameter MEM_SIZE = 256
+)( 
     input logic clk, 
     input logic [XLEN-1:0] Iaddress,
     output logic [XLEN-1:0] Idata
 );
 
-logic[XLEN-1:0]   mem[MEM_SIZE-1:0];
+// Memory array
+logic [XLEN-1:0] mem [0:MEM_SIZE-1];
 
-initial
-    begin 
-    for (int i = 0; i < MEM_SIZE; i++) mem[i] = 32'h00000013; //NOP to avoid undefined memory 
-$readmemh("inst_mem.txt", mem);
-    end
+// Initialize memory with NOPs, then load program
+initial begin
+    for (int i = 0; i < MEM_SIZE; i++)
+        mem[i] = 32'h00000013; // NOP = addi x0, x0, 0
 
-always_ff @(posedge clk)
-    begin
+    $readmemh("inst_mem.txt", mem);
+end
 
-    Idata <= mem[Iaddress[11:2]];
-
-    end
+// Asynchronous read (combinational)
+assign instr = mem[addr[$clog2(MEM_SIZE)+1:2]];
 
 endmodule

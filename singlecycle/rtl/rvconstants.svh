@@ -24,6 +24,15 @@
 `define OFF   1'b0
 `define ZERO  32'b0
 `define DONT_CARE_F7 7'h??
+
+//immediate type selector for imm_gen
+`define IMM_X 3'b000
+`define IMM_I 3'b001
+`define IMM_S 3'b010
+`define IMM_B 3'b011
+`define IMM_U 3'b100
+`define IMM_J 3'b101
+
 //instruction TYPE op-code
 `define R_TYPE    7'h33 // Register-Register
 `define I_OPIMM   7'h13 // Immediate ALU ops
@@ -37,7 +46,7 @@
 `define J_JAL     7'h6F // JAL
 
 //funct3 field
-//R-TYPE, the instructions are grouped together to avoid space wastage
+//R-TYPE
 `define ADD_F3    3'h0
 `define SUB_F3    3'h0
 `define XOR_F3    3'h4
@@ -57,7 +66,7 @@
 `define REM_F3    3'h6
 `define REMU_F3   3'h7
 
-//I-TYPE, some instructions are grouped together to avoid space wastage
+//I-TYPE
 `define ADDI_F3   3'h0
 `define XORI_F3   3'h4
 `define ORI_F3    3'h6

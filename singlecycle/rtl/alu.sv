@@ -22,7 +22,8 @@ module alu #(parameter XLEN = 32, CTRLSIGW_W = 4;)(
 		input logic	[XLEN-1:0] oprnd_a, oprnd_b,
 		input alu_op_e			alu_op,
 		output logic [XLEN-1:0]	alu_out,
-		output logic			zero_flag);
+		output logic			zero_flag,
+		output logic			branch_taken);
 
 `include "rvconstants.svh"
 

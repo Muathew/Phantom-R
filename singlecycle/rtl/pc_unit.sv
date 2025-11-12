@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////
 // Design unit: program counter
 //            :
-// File name  : pc.sv
+// File name  : pc_unit.sv
 //            :
 // Description: program counter for 32-bit RISC-V processor
 //            :
@@ -16,22 +16,36 @@
 //            : mw14n23@soton.ac.uk
 //
 // Revision   : Version 1.0 17/06/25
+//              Version 2.0 12/11/25 restructre for top level integration
 ////////////////////////////////////////////////////////////////////
 
-module pc #(parameter XLEN = 32)(
-    input logic clk, n_reset, load_PC
-    input logic [XLEN-1:0] PC_in
-    output logic [XLEN-1:0] Iaddress
+module pc_unit #(parameter XLEN = 32)(
+    input  logic clk,
+    input  logic n_reset,
+    input  logic branch,
+    input  logic jump,
+    input  logic branch_taken, //from ALU or comparator
+    input  logic [XLEN-1:0] imm,
+    input  logic [XLEN-1:0] alu_out,
+    output logic [XLEN-1:0] next_pc,
+    output logic [XLEN-1:0] pc
 );
+
+always_comb
+begin
+    next_pc = pc + 32'd4;
+
+    if (branch && branch_taken)
+        next_pc = pc + imm;
+    else if (jump)
+        next_pc = alu_result;
+end
 
 always_ff @(posedge clk, negedge n_reset)
     begin
     if (!n_reset)
-        Iaddress <= 0;
+        pc <= '0;
     else
-        if (load_PC)
-            Iaddress <= PC_in;
-            else
-            Iaddress <= PC_in + 4;
-    end
+        pc <= next_pc;
+end
 endmodule
