@@ -18,7 +18,7 @@
 // Revision   : Version 1.0 17/06/25
 ////////////////////////////////////////////////////////////////////
 
-module alu #(parameter XLEN = 32, CTRLSIGW_W = 4;)(
+module alu #(parameter XLEN = 32)(
 		input logic	[XLEN-1:0] oprnd_a, oprnd_b,
 		input alu_op_e			alu_op,
 		output logic [XLEN-1:0]	alu_out,
@@ -32,6 +32,10 @@ assign zero_flag = (alu_out == `ZERO);
 always_comb
 
 logic signed [(2*XLEN-1):0] mul_res;
+
+alu_out = `ZERO;
+zero_flag = `ON;
+branch_taken = `OFF;
 
 unique case (alu_op)
 	`ALU_ADD:	alu_out = oprnd_a + oprnd_b;
@@ -86,9 +90,16 @@ unique case (alu_op)
 					alu_out = oprnd_a;
 				else alu_out = oprnd_a % oprnd_b;
 				end
+	//Branch instructions			
+	`ALU_BEQ:	branch_taken = (oprnd_a == oprnd_b);		
+	`ALU_BNE:	branch_taken = (oprnd_a != oprnd_b);
+	`ALU_BLT:	branch_taken = ($signed (oprnd_a) < $signed (oprnd_b));
+	`ALU_BLGE:	branch_taken = ($signed (oprnd_a) >= $signed (oprnd_b));
+	`ALU_BLTU:	branch_taken = ($unsigned (oprnd_a) < $unsigned (oprnd_b));
+	`ALU_BGEU:	branch_taken = ($unsigned (oprnd_a) >= $unsigned (oprnd_b));
 	//Non-existent instructions prevention
 	`ALU_ILL:	alu_out = `ZERO;
 				zero_flag = `ON;
-				default: alu_out = `ZERO, zero_flag = `ON;
+				default: alu_out = `ZERO, zero_flag = `ON, branch_taken = `OFF;
 endcase
 endmodule

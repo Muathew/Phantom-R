@@ -152,6 +152,12 @@ typedef enum logic [4:0] {
   ALU_DIV,
   ALU_DIVU,
   ALU_REM,     
-  ALU_REMU
+  ALU_REMU,
+  ALU_BEQ,
+  ALU_BNE,
+  ALU_BLT,
+  ALU_BGE,
+  ALU_BLTU,
+  ALU_BGEU,
   ALU_ILL // alu illegal instruction   
 } alu_op_e;

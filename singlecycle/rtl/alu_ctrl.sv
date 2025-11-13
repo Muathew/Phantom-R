@@ -77,6 +77,17 @@ alu_op = ALU_ILL;
 		default: alu_op = ALU_ILL; //Default for non-existent funct fields
 		endcase
 		end
+	`B_TYPE: begin
+		unique case (funct3)
+		`BEQ_F3: alu_op = ALU_BEQ;
+		`BNE_F3: alu_op = ALU_BNE;
+		`BLT_F3: alu_op =ALU_BLT;
+		`BGE_F3: alu_op = ALU_BGE;
+		`BLTU_F3: alu_op = ALU_BLTU;
+		`BGEU_F3: alu_op = ALU_BGEU;
+		default: alu_op = ALU_ILL;
+		endcase
+		end
 		default: alu_op = ALU_ILL; //Default for non-existent opcodes
 		endcase
 end
